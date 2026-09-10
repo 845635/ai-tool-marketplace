@@ -170,6 +170,9 @@ function initHomePage() {
   // 渲染全部工具
   renderAllTools();
 
+  // 初始化AI工具轮盘
+  initWheel();
+
   // 搜索框事件
   const searchInput = document.getElementById('searchInput');
   if (searchInput) {
@@ -210,6 +213,87 @@ function initHomePage() {
     });
   }
 }
+
+// ===== AI工具轮盘 =====
+let wheelAngle = 0;
+let wheelItems = [];
+let wheelCurrentIndex = 0;
+
+function initWheel() {
+  const wheel = document.getElementById('aiWheel');
+  if (!wheel || !allTools.length) return;
+
+  // 选择16款代表工具：优先热门，再补充其余
+  const featured = allTools.filter(t => t.featured);
+  const rest = allTools.filter(t => !t.featured);
+  wheelItems = [...featured.slice(0, 8), ...rest.slice(0, 8)];
+  if (wheelItems.length < 16) {
+    wheelItems = allTools.slice(0, 16);
+  }
+  wheelItems = wheelItems.slice(0, 16);
+
+  const n = wheelItems.length;
+  const radius = 40; // 百分比半径（相对轮盘圆心）
+
+  wheel.innerHTML = wheelItems.map((tool, i) => {
+    const angle = (360 / n) * i - 90; // 从顶部开始
+    const rad = (angle * Math.PI) / 180;
+    const x = 50 + radius * Math.cos(rad);
+    const y = 50 + radius * Math.sin(rad);
+    const grad = getGradient(tool.id);
+    return `
+      <div class="wheel-item" style="background: linear-gradient(135deg, ${grad[0]}, ${grad[1]}); left:${x.toFixed(2)}%; top:${y.toFixed(2)}%;" onclick="event.stopPropagation();openWheelTool(${i})" title="${tool.name}">
+        <div class="wi-letter">${getInitial(tool.name)}</div>
+        <div class="wi-name">${tool.name}</div>
+      </div>
+    `;
+  }).join('');
+
+  updateWheelCurrent();
+}
+
+function spinWheel(steps) {
+  const wheel = document.getElementById('aiWheel');
+  if (!wheel || !wheelItems.length) return;
+
+  const n = wheelItems.length;
+  const perItem = 360 / n;
+  let targetAngle;
+
+  if (steps === undefined) {
+    // 随机旋转：随机选一个工具对准顶部
+    wheelCurrentIndex = Math.floor(Math.random() * wheelItems.length);
+    targetAngle = 360 * (5 + Math.floor(Math.random() * 3)) + (360 - perItem * wheelCurrentIndex);
+  } else {
+    // 指定步数旋转
+    wheelCurrentIndex = ((wheelCurrentIndex + steps) % n + n) % n;
+    targetAngle = 360 * 3 + (360 - perItem * wheelCurrentIndex);
+  }
+
+  wheelAngle = targetAngle;
+  wheel.style.transform = `rotate(${targetAngle}deg)`;
+
+  setTimeout(() => {
+    updateWheelCurrent();
+    const tool = wheelItems[wheelCurrentIndex];
+    if (tool) showToast(`🎯 选中 ${tool.name}`, 'info');
+  }, 1250);
+}
+
+function updateWheelCurrent() {
+  const el = document.getElementById('wheelCurrent');
+  if (el && wheelItems.length) {
+    el.textContent = wheelItems[wheelCurrentIndex].name;
+  }
+}
+
+function openWheelTool(index) {
+  const tool = wheelItems[index];
+  if (tool) {
+    openToolOfficial(tool.id);
+  }
+}
+
 
 function renderAllTools() {
   const grid = document.getElementById('allToolsGrid');
@@ -645,39 +729,77 @@ function selectPayment(method) {
   renderRechargeModal();
 }
 
-// 模拟支付流程
+// 真实收款流程（扫码付款 → 联系站长确认 → 手动发放Token）
+// 站长收款二维码：将你的微信/支付宝收款码图片分别命名为 wechat.png / alipay.png
+// 放到网站目录的 qr/ 文件夹下即可生效（如：qr/wechat.png、qr/alipay.png）
+// 站长联系方式（微信/QQ）：替换下方为你自己的联系方式
+const STATION_CONTACT = {
+  wechat: '你的微信号',
+  qq: '你的QQ号',
+  note: '付款后请发送付款截图，确认后Token手动到账'
+};
+
 function processPayment() {
   const body = document.getElementById('rechargeModalBody');
   const totalTokens = selectedPackage.tokens + selectedPackage.bonus;
+  const isWechat = selectedPayment === 'wechat';
+  const qrImg = isWechat ? 'qr/wechat.png' : 'qr/alipay.png';
+  const payName = isWechat ? '微信' : '支付宝';
   
-  // 显示支付中
   body.innerHTML = `
-    <div style="text-align:center;padding:40px 20px">
-      <div class="loading" style="font-size:16px;padding:20px">正在调起${selectedPayment === 'wechat' ? '微信' : '支付宝'}支付...</div>
-      <p style="font-size:13px;color:var(--text-light);margin-top:16px;">
-        请在弹出的支付窗口中完成支付，支付成功后Token将自动到账
-      </p>
-    </div>
-  `;
-  
-  // 模拟2秒后支付成功
-  setTimeout(() => {
-    addTokens(totalTokens);
-    recordTransaction('recharge', totalTokens, selectedPackage.price);
-    
-    body.innerHTML = `
-      <div class="payment-success">
-        <div class="success-icon">✓</div>
-        <h3>充值成功！</h3>
-        <p style="margin-bottom:8px">${totalTokens.toLocaleString()} Token 已到账</p>
-        <p style="font-size:13px">当前余额：<strong style="color:var(--primary)">${getTokenBalance().toLocaleString()} Token</strong></p>
-        <button class="btn btn-primary" style="margin-top:24px" onclick="closeRechargeModal()">
-          完成
+    <div class="qr-pay-box">
+      <div class="qr-pay-amount">¥${selectedPackage.price}</div>
+      <div class="qr-pay-label">${selectedPackage.label} · ${totalTokens.toLocaleString()} Token ${selectedPackage.bonus > 0 ? `（含赠送 ${selectedPackage.bonus.toLocaleString()}）` : ''}</div>
+      
+      <div class="qr-image-wrap">
+        <img src="${qrImg}" alt="${payName}收款码"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="qr-placeholder" style="display:none">
+          <div class="qr-big">${isWechat ? '💚' : '💙'}</div>
+          <div>${payName}收款码</div>
+          <div>站长尚未上传收款码</div>
+        </div>
+      </div>
+      
+      <div class="qr-tip">
+        ⚠️ 请使用<b>${payName}</b>扫描上方二维码，支付 <b>¥${selectedPackage.price}</b><br>
+        付款成功后点击下方"我已付款"，并联系站长发送<b>付款截图</b>，确认后Token将手动到账。
+      </div>
+      
+      <div style="margin-top:18px">
+        <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="confirmPaid()">
+          ✅ 我已付款，等待Token到账
+        </button>
+        <button class="btn btn-outline" style="width:100%;justify-content:center;margin-top:10px" onclick="renderRechargeModal()">
+          ← 返回重新选择
         </button>
       </div>
-    `;
-    showToast(`充值成功，获得 ${totalTokens.toLocaleString()} Token`, 'success');
-  }, 2000);
+      
+      <div class="qr-contact">
+        联系站长：<b>${STATION_CONTACT.wechat}</b>（微信） / <b>${STATION_CONTACT.qq}</b>（QQ）
+      </div>
+    </div>
+  `;
+}
+
+// 确认已付款
+function confirmPaid() {
+  const body = document.getElementById('rechargeModalBody');
+  body.innerHTML = `
+    <div style="text-align:center;padding:40px 20px">
+      <div style="font-size:56px;margin-bottom:12px">📩</div>
+      <h3>订单已提交</h3>
+      <p style="font-size:13px;color:var(--text-light);margin:12px 0 6px">请将<b>付款截图</b>发送给站长（${STATION_CONTACT.wechat}）确认</p>
+      <p style="font-size:13px;color:var(--text-light);margin-bottom:6px">确认到账后，Token将立即发放到你的账户</p>
+      <p style="font-size:12px;color:#fbbf24;background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);border-radius:8px;padding:8px 12px;margin:10px auto;max-width:320px">
+        💡 到账后请刷新页面查看余额
+      </p>
+      <button class="btn btn-primary" style="margin-top:20px" onclick="closeRechargeModal()">
+        完成
+      </button>
+    </div>
+  `;
+  showToast('订单已提交，请发送付款截图联系站长确认', 'warning');
 }
 
 // 记录交易历史
