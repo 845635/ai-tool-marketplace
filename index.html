@@ -40,7 +40,7 @@
         <span>✨</span> 汇聚全球优质AI工具，一站式发现与对比
       </div>
       <h1>发现最适合你的<br><span class="gradient">AI工具与解决方案</span></h1>
-      <p>精选全球80+款优质AI工具，覆盖绘画、音乐、写作、编程、视频、办公等10大领域，助你高效提升生产力</p>
+      <p>精选全球134款优质AI工具，覆盖绘画、音乐、写作、编程、视频、办公等10大领域，助你高效提升生产力</p>
       
       <div class="search-box">
         <span class="search-icon">🔍</span>
@@ -53,6 +53,33 @@
         <span>AI写作</span>
         <span>AI编程</span>
         <span>AI视频</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI工具轮盘 -->
+  <section class="ai-wheel-section">
+    <div class="container">
+      <h2 class="wheel-title">🌀 AI 工具轮盘</h2>
+      <p class="wheel-subtitle">转动轮盘，探索全球AI工具 · 点击任意工具直达官网</p>
+
+      <div class="wheel-container">
+        <div class="wheel-ring"></div>
+        <div class="wheel" id="aiWheel">
+          <!-- JS渲染工具项 -->
+        </div>
+        <div class="wheel-center" onclick="spinWheel()" title="点击旋转轮盘">
+          <div class="wc-icon">🤖</div>
+          <div class="wc-title">AI工具超市</div>
+          <div class="wc-hint">CLICK TO SPIN</div>
+        </div>
+      </div>
+
+      <div class="wheel-controls">
+        <button class="wheel-btn spin" onclick="spinWheel()">🎰 随机旋转</button>
+        <button class="wheel-btn" onclick="spinWheel(6)">+6 格</button>
+        <button class="wheel-btn" onclick="spinWheel(-6)">-6 格</button>
+        <div class="wheel-current">当前选中：<b id="wheelCurrent">—</b></div>
       </div>
     </div>
   </section>
@@ -71,8 +98,6 @@
       </div>
     </div>
   </section>
-
-  <!-- 热门工具 -->
   <section class="tools-section">
     <div class="container">
       <div class="section-header">
