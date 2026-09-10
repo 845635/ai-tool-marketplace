@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们 - AI工具超市</title>
+  <meta name="description" content="了解AI工具超市的使命、愿景和联系方式。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="about">
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🤖</span>
+        AI工具超市
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="category.html">全部工具</a></li>
+        <li><a href="workbench.html">工作台</a></li>
+        <li><a href="about.html" class="active">关于我们</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="token-balance" title="点击查看余额/充值">
+          <span class="token-icon">💎</span>
+          <span class="token-amount">0</span>
+        </div>
+        <button class="token-recharge-btn" onclick="openRechargeModal()">充值</button>
+      </div>
+      <button class="mobile-menu-btn" aria-label="菜单">☰</button>
+    </div>
+  </nav>
+
+  <!-- 关于页内容 -->
+  <div class="about-section">
+    <h1>关于 <span style="background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AI工具超市</span></h1>
+    <p class="lead">你的AI工具发现与导航平台，让每个人都能轻松享受AI带来的效率革命</p>
+
+    <!-- 数据统计 -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="statTools">80+</div>
+        <div class="stat-label">收录AI工具</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statCategories">10</div>
+        <div class="stat-label">工具分类领域</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statFeatured">20+</div>
+        <div class="stat-label">精选热门推荐</div>
+      </div>
+    </div>
+
+    <!-- 我们的使命 -->
+    <div class="about-card">
+      <h2>🎯 我们的使命</h2>
+      <p>AI技术正在以前所未有的速度改变世界，每天都有新的AI工具诞生。然而，面对海量的AI产品，用户往往难以快速找到最适合自己需求的工具。</p>
+      <p>AI工具超市致力于解决这个问题——我们精心筛选和整理全球优质AI工具，用清晰的分类、详实的介绍和直观的对比，帮助每个人快速发现和使用最适合自己的AI产品。</p>
+    </div>
+
+    <!-- 我们的特色 -->
+    <div class="about-card">
+      <h2>✨ 平台特色</h2>
+      <ul>
+        <li><strong>精心筛选</strong>：每款工具都经过人工审核，确保质量和可用性，拒绝低质和虚假产品</li>
+        <li><strong>分类清晰</strong>：10大领域精细分类，支持按功能、价格模式等多维度筛选</li>
+        <li><strong>信息详实</strong>：每款工具提供详细介绍、核心功能、价格信息和官方链接，决策更从容</li>
+        <li><strong>持续更新</strong>：紧跟AI行业发展，持续收录新工具、更新产品信息</li>
+        <li><strong>免费使用</strong>：平台完全免费，所有工具信息公开透明，无需注册即可浏览</li>
+        <li><strong>中立客观</strong>：我们不偏向任何厂商，所有工具评价基于实际功能和用户反馈</li>
+      </ul>
+    </div>
+
+    <!-- 工具分类概览 -->
+    <div class="about-card">
+      <h2>📂 覆盖领域</h2>
+      <p>AI工具超市目前覆盖以下10大领域，持续扩展中：</p>
+      <ul>
+        <li><strong>AI绘画/图像</strong>：图像生成、艺术创作、图片编辑工具</li>
+        <li><strong>AI音乐/音频</strong>：音乐创作、歌声合成、音频处理工具</li>
+        <li><strong>AI对话/客服</strong>：智能对话、聊天机器人、客服助手</li>
+        <li><strong>AI写作/文案</strong>：文章写作、文案生成、内容创作工具</li>
+        <li><strong>AI编程/开发</strong>：代码生成、编程助手、开发提效工具</li>
+        <li><strong>AI视频生成</strong>：文生视频、视频编辑、数字人工具</li>
+        <li><strong>AI办公/效率</strong>：文档处理、PPT生成、办公提效工具</li>
+        <li><strong>AI设计</strong>：UI设计、平面设计、设计辅助工具</li>
+        <li><strong>AI教育/学习</strong>：智能辅导、语言学习、知识获取工具</li>
+        <li><strong>AI数据/分析</strong>：数据分析、可视化、低代码平台</li>
+      </ul>
+    </div>
+
+    <!-- 联系我们 -->
+    <div class="about-card" id="contact">
+      <h2>📮 联系我们</h2>
+      <p>如果你有任何问题、建议或合作意向，欢迎通过以下方式联系我们：</p>
+      <ul>
+        <li><strong>工具收录</strong>：如果你的AI工具希望被收录，请发送工具介绍和官方链接给我们</li>
+        <li><strong>信息更正</strong>：如果发现工具信息有误，欢迎告知我们进行修正</li>
+        <li><strong>商务合作</strong>：广告投放、品牌合作、联合活动等商务洽谈</li>
+        <li><strong>意见反馈</strong>：对平台功能、内容或体验的任何建议</li>
+      </ul>
+      <p style="margin-top:16px;padding:16px;background:var(--bg);border-radius:10px;font-size:14px">
+        💡 提示：本网站为AI工具导航平台，所有工具均跳转到官方网站。工具的版权归原开发者所有，如有侵权请联系我们删除。
+      </p>
+    </div>
+
+    <div style="text-align:center;margin-top:40px">
+      <a href="index.html" class="btn btn-primary">🏠 返回首页，探索工具</a>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-icon">🤖</span>
+            AI工具超市
+          </a>
+          <p>汇聚全球优质AI工具，帮助每个人发现和使用最适合自己的AI产品，提升工作与创作效率。</p>
+        </div>
+        <div class="footer-col">
+          <h4>工具分类</h4>
+          <ul>
+            <li><a href="category.html?cat=image">AI绘画/图像</a></li>
+            <li><a href="category.html?cat=music">AI音乐/音频</a></li>
+            <li><a href="category.html?cat=chat">AI对话/客服</a></li>
+            <li><a href="category.html?cat=writing">AI写作/文案</a></li>
+            <li><a href="category.html?cat=coding">AI编程/开发</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>更多分类</h4>
+          <ul>
+            <li><a href="category.html?cat=video">AI视频生成</a></li>
+            <li><a href="category.html?cat=office">AI办公/效率</a></li>
+            <li><a href="category.html?cat=design">AI设计</a></li>
+            <li><a href="category.html?cat=education">AI教育/学习</a></li>
+            <li><a href="category.html?cat=data">AI数据/分析</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>关于</h4>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="about.html#contact">联系我们</a></li>
+            <li><a href="category.html">全部工具</a></li>
+            <li><a href="index.html">返回首页</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AI工具超市. 保留所有权利.</span>
+        <span>用心整理，助力AI时代的每一位创作者</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/tools-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

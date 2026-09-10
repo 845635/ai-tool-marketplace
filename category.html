@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全部工具 - AI工具超市</title>
+  <meta name="description" content="浏览AI工具超市收录的全部AI工具，支持按分类和价格筛选。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="category">
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🤖</span>
+        AI工具超市
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="category.html" class="active">全部工具</a></li>
+        <li><a href="workbench.html">工作台</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="token-balance" title="点击查看余额/充值">
+          <span class="token-icon">💎</span>
+          <span class="token-amount">0</span>
+        </div>
+        <button class="token-recharge-btn" onclick="openRechargeModal()">充值</button>
+      </div>
+      <button class="mobile-menu-btn" aria-label="菜单">☰</button>
+    </div>
+  </nav>
+
+  <!-- 分类页头部 -->
+  <section class="hero" style="padding:48px 0 32px">
+    <div class="container">
+      <div class="breadcrumb" style="justify-content:center;margin-bottom:16px">
+        <a href="index.html">首页</a>
+        <span class="sep">/</span>
+        <span>工具分类</span>
+      </div>
+      <h1 id="categoryTitle" style="font-size:36px">全部工具</h1>
+      <p id="categoryDesc" style="font-size:16px;margin-bottom:24px">浏览所有收录的AI工具</p>
+      
+      <div class="search-box" style="max-width:500px">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="catSearchInput" placeholder="在当前分类中搜索..." autocomplete="off">
+      </div>
+    </div>
+  </section>
+
+  <!-- 分类标签 -->
+  <section class="tools-section" style="padding-top:0">
+    <div class="container">
+      <div class="filter-bar" style="margin-bottom:24px">
+        <div class="filter-tabs" id="categoryTabs">
+          <!-- JS渲染 -->
+        </div>
+        <span class="result-count" id="categoryResultCount"></span>
+      </div>
+
+      <div class="tools-grid" id="categoryToolsGrid">
+        <!-- JS渲染 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-icon">🤖</span>
+            AI工具超市
+          </a>
+          <p>汇聚全球优质AI工具，帮助每个人发现和使用最适合自己的AI产品，提升工作与创作效率。</p>
+        </div>
+        <div class="footer-col">
+          <h4>工具分类</h4>
+          <ul>
+            <li><a href="category.html?cat=image">AI绘画/图像</a></li>
+            <li><a href="category.html?cat=music">AI音乐/音频</a></li>
+            <li><a href="category.html?cat=chat">AI对话/客服</a></li>
+            <li><a href="category.html?cat=writing">AI写作/文案</a></li>
+            <li><a href="category.html?cat=coding">AI编程/开发</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>更多分类</h4>
+          <ul>
+            <li><a href="category.html?cat=video">AI视频生成</a></li>
+            <li><a href="category.html?cat=office">AI办公/效率</a></li>
+            <li><a href="category.html?cat=design">AI设计</a></li>
+            <li><a href="category.html?cat=education">AI教育/学习</a></li>
+            <li><a href="category.html?cat=data">AI数据/分析</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>关于</h4>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="about.html#contact">联系我们</a></li>
+            <li><a href="category.html">全部工具</a></li>
+            <li><a href="index.html">返回首页</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AI工具超市. 保留所有权利.</span>
+        <span>用心整理，助力AI时代的每一位创作者</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/tools-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

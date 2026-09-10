@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI工具超市 - 发现全球优质AI工具</title>
+  <meta name="description" content="AI工具超市汇聚全球优质AI工具，涵盖AI绘画、音乐生成、智能客服、写作、编程、视频等领域，帮你快速找到最适合的AI工具。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🤖</span>
+        AI工具超市
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">首页</a></li>
+        <li><a href="category.html">全部工具</a></li>
+        <li><a href="workbench.html">工作台</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="token-balance" title="点击查看余额/充值">
+          <span class="token-icon">💎</span>
+          <span class="token-amount">0</span>
+        </div>
+        <button class="token-recharge-btn" onclick="openRechargeModal()">充值</button>
+      </div>
+      <button class="mobile-menu-btn" aria-label="菜单">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero 区域 -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span>✨</span> 汇聚全球优质AI工具，一站式发现与对比
+      </div>
+      <h1>发现最适合你的<br><span class="gradient">AI工具与解决方案</span></h1>
+      <p>精选全球80+款优质AI工具，覆盖绘画、音乐、写作、编程、视频、办公等10大领域，助你高效提升生产力</p>
+      
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索AI工具，如：绘画、音乐、客服、编程..." autocomplete="off">
+      </div>
+      <div class="search-hint">
+        热门搜索：
+        <span>AI绘画</span>
+        <span>AI音乐</span>
+        <span>AI写作</span>
+        <span>AI编程</span>
+        <span>AI视频</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 分类导航 -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">📂 工具分类</h2>
+          <p class="section-subtitle">按领域快速找到你需要的AI工具</p>
+        </div>
+      </div>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- JS渲染 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 热门工具 -->
+  <section class="tools-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">🔥 热门推荐</h2>
+          <p class="section-subtitle">最受欢迎的优质AI工具</p>
+        </div>
+        <a href="category.html" class="btn btn-outline" style="padding:8px 16px;font-size:13px">查看全部 →</a>
+      </div>
+      <div class="tools-grid" id="featuredGrid">
+        <!-- JS渲染 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 全部工具 -->
+  <section class="tools-section" id="allTools">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">🛠️ 全部工具</h2>
+          <p class="section-subtitle">浏览所有收录的AI工具</p>
+        </div>
+      </div>
+      
+      <div class="filter-bar">
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-category="all">全部</button>
+          <button class="filter-tab" data-category="image">🎨 绘画</button>
+          <button class="filter-tab" data-category="music">🎵 音乐</button>
+          <button class="filter-tab" data-category="chat">💬 对话</button>
+          <button class="filter-tab" data-category="writing">✍️ 写作</button>
+          <button class="filter-tab" data-category="coding">💻 编程</button>
+          <button class="filter-tab" data-category="video">🎬 视频</button>
+          <button class="filter-tab" data-category="office">📊 办公</button>
+        </div>
+        <select class="filter-select" id="pricingFilter">
+          <option value="all">全部价格</option>
+          <option value="free">免费</option>
+          <option value="freemium">免费+付费</option>
+          <option value="paid">付费</option>
+        </select>
+        <span class="result-count" id="resultCount"></span>
+      </div>
+
+      <div class="tools-grid" id="allToolsGrid">
+        <!-- JS渲染 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-icon">🤖</span>
+            AI工具超市
+          </a>
+          <p>汇聚全球优质AI工具，帮助每个人发现和使用最适合自己的AI产品，提升工作与创作效率。</p>
+        </div>
+        <div class="footer-col">
+          <h4>工具分类</h4>
+          <ul>
+            <li><a href="category.html?cat=image">AI绘画/图像</a></li>
+            <li><a href="category.html?cat=music">AI音乐/音频</a></li>
+            <li><a href="category.html?cat=chat">AI对话/客服</a></li>
+            <li><a href="category.html?cat=writing">AI写作/文案</a></li>
+            <li><a href="category.html?cat=coding">AI编程/开发</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>更多分类</h4>
+          <ul>
+            <li><a href="category.html?cat=video">AI视频生成</a></li>
+            <li><a href="category.html?cat=office">AI办公/效率</a></li>
+            <li><a href="category.html?cat=design">AI设计</a></li>
+            <li><a href="category.html?cat=education">AI教育/学习</a></li>
+            <li><a href="category.html?cat=data">AI数据/分析</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>关于</h4>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="about.html#contact">联系我们</a></li>
+            <li><a href="category.html">全部工具</a></li>
+            <li><a href="index.html">返回首页</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AI工具超市. 保留所有权利.</span>
+        <span>用心整理，助力AI时代的每一位创作者</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/tools-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

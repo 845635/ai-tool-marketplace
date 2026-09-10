@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工具详情 - AI工具超市</title>
+  <meta name="description" content="查看AI工具的详细介绍、功能特点、价格信息和官方链接。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="detail">
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🤖</span>
+        AI工具超市
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="category.html">全部工具</a></li>
+        <li><a href="workbench.html">工作台</a></li>
+        <li><a href="about.html">关于我们</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="token-balance" title="点击查看余额/充值">
+          <span class="token-icon">💎</span>
+          <span class="token-amount">0</span>
+        </div>
+        <button class="token-recharge-btn" onclick="openRechargeModal()">充值</button>
+      </div>
+      <button class="mobile-menu-btn" aria-label="菜单">☰</button>
+    </div>
+  </nav>
+
+  <!-- 详情页内容 -->
+  <div class="container" id="detailContent">
+    <!-- 面包屑 -->
+    <div class="breadcrumb" id="breadcrumb" style="margin-top:24px"></div>
+
+    <!-- 详情头部 -->
+    <section class="detail-hero" style="padding:24px 0 32px">
+      <div class="detail-header" id="detailHeader">
+        <!-- JS渲染 -->
+      </div>
+    </section>
+
+    <!-- 详情主体 -->
+    <div class="detail-content">
+      <div class="detail-main" id="detailMain">
+        <!-- JS渲染 -->
+      </div>
+      <div class="detail-sidebar" id="detailSidebar">
+        <!-- JS渲染 -->
+      </div>
+    </div>
+
+    <!-- 相关推荐 -->
+    <section class="tools-section" id="relatedTools" style="padding-top:0">
+      <!-- JS渲染 -->
+    </section>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-icon">🤖</span>
+            AI工具超市
+          </a>
+          <p>汇聚全球优质AI工具，帮助每个人发现和使用最适合自己的AI产品，提升工作与创作效率。</p>
+        </div>
+        <div class="footer-col">
+          <h4>工具分类</h4>
+          <ul>
+            <li><a href="category.html?cat=image">AI绘画/图像</a></li>
+            <li><a href="category.html?cat=music">AI音乐/音频</a></li>
+            <li><a href="category.html?cat=chat">AI对话/客服</a></li>
+            <li><a href="category.html?cat=writing">AI写作/文案</a></li>
+            <li><a href="category.html?cat=coding">AI编程/开发</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>更多分类</h4>
+          <ul>
+            <li><a href="category.html?cat=video">AI视频生成</a></li>
+            <li><a href="category.html?cat=office">AI办公/效率</a></li>
+            <li><a href="category.html?cat=design">AI设计</a></li>
+            <li><a href="category.html?cat=education">AI教育/学习</a></li>
+            <li><a href="category.html?cat=data">AI数据/分析</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>关于</h4>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="about.html#contact">联系我们</a></li>
+            <li><a href="category.html">全部工具</a></li>
+            <li><a href="index.html">返回首页</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AI工具超市. 保留所有权利.</span>
+        <span>用心整理，助力AI时代的每一位创作者</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/tools-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
